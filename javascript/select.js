@@ -38,6 +38,9 @@ if (selectedItem == phoneOne.itemId){
     document.getElementById("name1").innerText = phoneOne.title
     document.getElementById("priceOne").innerText = phoneOne.price
     document.getElementById("originalOne").innerText = phoneOne.originalPrice
+
+    let cost = phoneOne.price
+    qty(cost)
 }
 
 else if(selectedItem == phoneTwo.itemId){
@@ -45,6 +48,9 @@ else if(selectedItem == phoneTwo.itemId){
     document.getElementById("name1").innerText = phoneTwo.title
     document.getElementById("priceOne").innerText = phoneTwo.price
     document.getElementById("originalOne").innerText = phoneTwo.originalPrice
+
+    let cost = phoneTwo.price
+    qty(cost)
 }
 
 else if(selectedItem == phoneThree.itemId){
@@ -52,6 +58,9 @@ else if(selectedItem == phoneThree.itemId){
     document.getElementById("name1").innerText = phoneThree.title
     document.getElementById("priceOne").innerText = phoneThree.price
     document.getElementById("originalOne").innerText = phoneThree.originalPrice
+
+    let cost = phoneThree.price
+    qty(cost)
 }
 
 else{
@@ -59,4 +68,60 @@ else{
     document.getElementById("name1").innerText = phoneFour.title
     document.getElementById("priceOne").innerText = phoneFour.price
     document.getElementById("originalOne").innerText = phoneFour.originalPrice
+
+    let cost = phoneFour.price
+    qty(cost)
+}
+
+function qty(cost){
+    document.getElementById("quantity").onkeyup = function(){
+        let quantity = document.getElementById("quantity").value
+        let amount = cost
+
+        if (quantity > 1){
+            let total = quantity*amount
+            document.getElementById("total").innerText = `Total cash: ${total}`
+            userLocation(total)
+        }
+        else if (quantity == 1){
+            let total = amount
+            document.getElementById("total").innerText = `Total cash: ${total}`
+            userLocation(total)
+        }
+        else{
+            document.getElementById("total").innerText = "Enter a valid quantity!!!"
+            document.getElementById("total").style.color = "red"
+            document.getElementById("total").style.fontSize = "24px"
+        }
+    }
+
+
+}
+
+function userLocation(total){
+    document.getElementById("location").onchange = function(){
+        let Mombasa = 1200
+        let Nairobi = 500
+        let Kisumu = 1000
+        let delivery = document.getElementById("location").value
+
+        if (delivery == "Mombasa"){
+            document.getElementById("total").innerText = `Total cash: ${total + Mombasa}`
+        }
+
+        else if (delivery ==" Nairobi"){
+            document.getElementById("total").innerText = `Total cash: ${total + Nairobi}`
+
+        }
+
+        else if (delivery == "Kisumu"){
+            document.getElementById("total").innerText = `Total cash: ${total + Kisumu}`
+        }
+
+        else if(delivery == ""){
+            document.getElementById("total").innerText = `Total cash: ${total}`
+        }
+
+        
+    }
 }
